@@ -8,7 +8,7 @@ const int dutys[] = {0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0
                     };
 int ledCounts;
-int delayTimes = 50;
+int delayTimes = 1000;
 void setup() {
   // get ledCounts size, uses that to iterate through channel and pin arrays to attach with a for loop
   ledCounts = sizeof(ledPins);
@@ -19,13 +19,14 @@ void setup() {
 }
 
 void loop() {
-  // 
+  // light flows forward
   for (int i = 0; i < 16; i++) {
     for (int j = 0; j < ledCounts; j++) {
       ledcWrite(chns[j], dutys[i + j]);
     }
     delay(delayTimes);
   }
+  //light flows the other
   for (int i = 0; i < 16; i++) {
     for (int j = ledCounts - 1; j > -1; j--) {
     ledcWrite(chns[j], dutys[i + (ledCounts - 1 -j)]);
